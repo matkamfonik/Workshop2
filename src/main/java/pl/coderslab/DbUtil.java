@@ -10,7 +10,7 @@ public class DbUtil {
 
 
 
-    public static Connection connectToWorkshop2() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
                 DB_URL,
                 DB_USER,
