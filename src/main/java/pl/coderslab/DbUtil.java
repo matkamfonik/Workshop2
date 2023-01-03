@@ -3,24 +3,16 @@ package pl.coderslab;
 import java.sql.*;
 
 public class DbUtil {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/products_ex?useSSL=false&characterEncoding=utf8&serverTimezone=UTC";
-    private static final String DB_URL2 = "jdbc:mysql://localhost:3306/cinemas_ex?useSSL=false&characterEncoding=utf8&serverTimezone=UTC";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/workshop2?useSSL=false&characterEncoding=utf8&serverTimezone=UTC";
     private static final String DB_USER = "root";
     private static final String DB_PASS = Password.PASSWORD;
 
 
 
 
-    public static Connection connectToProducts() throws SQLException {
+    public static Connection connectToWorkshop2() throws SQLException {
         return DriverManager.getConnection(
                 DB_URL,
-                DB_USER,
-                DB_PASS
-        );
-    }
-    public static Connection connectToCinemas() throws SQLException {
-        return DriverManager.getConnection(
-                DB_URL2,
                 DB_USER,
                 DB_PASS
         );
@@ -61,8 +53,8 @@ public class DbUtil {
         }
     }
     public static void update(Connection conn, String query, int id, String... params) {
-        try ( PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(params.length+1, id);
+        try ( PreparedStatement statement =
+                      conn.prepareStatement(query.replace("idNumber", String.valueOf(id)))) {
             for (int i = 0; i < params.length; i++) {
                 statement.setString(i + 1, params[i]);
             }
