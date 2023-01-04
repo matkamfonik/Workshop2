@@ -19,7 +19,7 @@ public class UserDao {
             UPDATE users
             SET email = ?,
                 username = ?,
-                password = ?,
+                password = ?
             WHERE id = ?;
             """;
     private static final String DELETE_USER_QUERY = """
@@ -64,6 +64,21 @@ public class UserDao {
         } catch (SQLException e){
             e.printStackTrace();
             return null;
+        }
+    }
+    public void update (User user){
+        try (Connection conn = DbUtil.getConnection()) {
+            PreparedStatement statement =
+                    conn.prepareStatement(UPDATE_USER_QUERY);
+            statement.setString(1, user.getEmail());
+            statement.setString(2, user.getUserName());
+            statement.setString(3, user.getPassword());
+            statement.setInt(4, user.getId());
+            statement.executeUpdate();
+        } catch (SQLIntegrityConstraintViolationException e){
+            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
