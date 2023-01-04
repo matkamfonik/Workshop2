@@ -13,22 +13,23 @@ public class MainDao {
 //        user.setPassword("12345");
         UserDao userDao = new UserDao();
 //        userDao.create(user);
-        User user = userDao.read(1);
-        System.out.println(user.getId());
-        System.out.println(user.getEmail());
-        System.out.println(user.getUserName());
-        System.out.println(user.getPassword());
-        user.setId(3);
-        user.setEmail("jakiś@email.com");
-        System.out.println(user.getId());
-        System.out.println(user.getEmail());
-        System.out.println(user.getUserName());
-        System.out.println(user.getPassword());
-        userDao.update(user);
-        System.out.println(user.getId());
-        System.out.println(user.getEmail());
-        System.out.println(user.getUserName());
-        System.out.println(user.getPassword());
+//        User user = userDao.read(1);
+//        System.out.println(user.getId());
+//        System.out.println(user.getEmail());
+//        System.out.println(user.getUserName());
+//        System.out.println(user.getPassword());
+//        user.setId(3);
+//        user.setEmail("jakiś@email.com");
+//        System.out.println(user.getId());
+//        System.out.println(user.getEmail());
+//        System.out.println(user.getUserName());
+//        System.out.println(user.getPassword());
+//        userDao.update(user);
+//        System.out.println(user.getId());
+//        System.out.println(user.getEmail());
+//        System.out.println(user.getUserName());
+//        System.out.println(user.getPassword());
+        userDao.delete(3);
     }
 
 }
