@@ -1,9 +1,17 @@
 package pl.coderslab;
 
-public class MainDao {
+import pl.coderslab.entity.User;
+import pl.coderslab.entity.UserDao;
 
-    String update = """
-                
-                """;
-    //    DbUtil.update(conn, update, id, email, username, password);
+public class MainDao {
+    public static void main(String[] args) {
+//        User user = new User();
+//        user.setUserName("user1");
+//        user.setEmail( "mail@wp.pl");
+//        user.setPassword("12345");
+//        UserDao userDao = new UserDao();
+//        userDao.create(user);
+//        System.out.println(user.getId());
+    }
+
 }
