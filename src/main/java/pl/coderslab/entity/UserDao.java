@@ -32,6 +32,16 @@ public class UserDao {
             FROM users
             """;
 
+    private static final String DELETE_ALL_QUERRY = """
+            DELETE FROM users
+            WHERE id LIKE '%'
+            """;
+
+    private static final String RESET_AUTO_INCREMENT_QUERY = """
+            ALTER TABLE users
+                AUTO_INCREMENT = 1
+            """;
+
     public String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
@@ -106,7 +116,7 @@ public class UserDao {
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement statement = conn.prepareStatement(FIND_ALL_QUERRY);
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 User user = new User();
                 user.setId(resultSet.getInt(1));
                 user.setEmail(resultSet.getString(2));
@@ -125,5 +135,16 @@ public class UserDao {
         User[] tmpUsers = Arrays.copyOf(users, users.length + 1);
         tmpUsers[users.length] = u;
         return tmpUsers;
+    }
+
+    public void deleteAll(){
+        try (Connection conn = DbUtil.getConnection()){
+            PreparedStatement deleteAllStatement = conn.prepareStatement(DELETE_ALL_QUERRY);
+            PreparedStatement resetAutoIncrementStatement = conn.prepareStatement(RESET_AUTO_INCREMENT_QUERY);
+            deleteAllStatement.executeUpdate();
+            resetAutoIncrementStatement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }

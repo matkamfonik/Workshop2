@@ -7,12 +7,13 @@ import java.sql.SQLException;
 
 public class MainDao {
     public static void main(String[] args) throws SQLException {
-        User user = new User();
-        user.setUserName("user1");
-        user.setEmail( "mail@wp.pl");
-        user.setPassword("12345");
         UserDao userDao = new UserDao();
-        userDao.create(user);
+//        userDao.deleteAll();
+//        User user = new User();
+//        user.setUserName("user4");
+//        user.setEmail( "mail4@wp.pl");
+//        user.setPassword("12345");
+//        userDao.create(user);
 //        User user = userDao.read(1);
 //        System.out.println(user.getId());
 //        System.out.println(user.getEmail());
