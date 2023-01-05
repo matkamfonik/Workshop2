@@ -17,14 +17,6 @@ public class DbUtil {
                 DB_PASS
         );
     }
-<<<<<<< HEAD
-    public static Connection connectToCinemas() throws SQLException {
-        return DriverManager.getConnection(
-                DB_URL2,
-                DB_USER,
-                DB_PASS
-        );
-    }
     public static void insert(Connection conn, String query, String... params) {
         try ( PreparedStatement statement = conn.prepareStatement(query)) {
             for (int i = 0; i < params.length; i++) {
