@@ -12,7 +12,7 @@ public class UserDao {
             VALUES (?, ?, ?)
             """;
     private static final String READ_USER_QUERY = """
-            SELECT * 
+            SELECT *
             FROM users
             WHERE id = ?
             """;
@@ -27,12 +27,12 @@ public class UserDao {
             DELETE FROM users
             WHERE id = ?
             """;
-    private static final String FIND_ALL_QUERRY = """
+    private static final String FIND_ALL_QUERY = """
             SELECT *
             FROM users
             """;
 
-    private static final String DELETE_ALL_QUERRY = """
+    private static final String DELETE_ALL_QUERY = """
             DELETE FROM users
             WHERE id LIKE '%'
             """;
@@ -114,7 +114,7 @@ public class UserDao {
     public User[] findAll() {
         User[] users = new User[0];
         try (Connection conn = DbUtil.getConnection()) {
-            PreparedStatement statement = conn.prepareStatement(FIND_ALL_QUERRY);
+            PreparedStatement statement = conn.prepareStatement(FIND_ALL_QUERY);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 User user = new User();
@@ -139,7 +139,7 @@ public class UserDao {
 
     public void deleteAll(){
         try (Connection conn = DbUtil.getConnection()){
-            PreparedStatement deleteAllStatement = conn.prepareStatement(DELETE_ALL_QUERRY);
+            PreparedStatement deleteAllStatement = conn.prepareStatement(DELETE_ALL_QUERY);
             PreparedStatement resetAutoIncrementStatement = conn.prepareStatement(RESET_AUTO_INCREMENT_QUERY);
             deleteAllStatement.executeUpdate();
             resetAutoIncrementStatement.executeUpdate();
